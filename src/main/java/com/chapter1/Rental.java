@@ -25,7 +25,7 @@ public class Rental {
     this.daysRented = daysRented;
   }
 
-  public double amountFor() {
+  public double getCharge() {
     double result = 0;
     switch (this.getMovie().getPriceCode()) {
       case Movie.REGULAR:
@@ -45,5 +45,13 @@ public class Rental {
         break;
     }
     return result;
+  }
+
+  public int getFrequentRenterPoints() {
+    if ((this.getMovie().getPriceCode() == Movie.NEW_RELEASE) && this.getDaysRented() > 1) {
+      return 2;
+    } else {
+      return 1;
+    }
   }
 }
