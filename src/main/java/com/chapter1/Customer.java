@@ -20,20 +20,32 @@ public class Customer {
     this.rentals.add(rental);
   }
 
+  // Now Statement is loosely coupled with calculation logic. We can add a other flavour of statement in future ex. html / pdf etc.
   public String statement() {
-    double totalAmount = 0;
-    int frequentRenterPoints = 0;
     String result = "Rental Record for " + this.getName() + "\n";
 
     for (Rental each : this.rentals) {
-      frequentRenterPoints += each.getFrequentRenterPoints();
-
       result += "\t" + each.getMovie().getTitle() + "\t" + each.getCharge() + "\n";
-      totalAmount += each.getCharge();
     }
 
-    result += "Amount owed is " + totalAmount + "\n";
-    result += "You earned " + frequentRenterPoints + " frequent renter points";
+    result += "Amount owed is " + this.getTotalCharge() + "\n";
+    result += "You earned " + this.getTotalFrequentRenterPoints() + " frequent renter points";
     return result;
+  }
+
+  private int getTotalFrequentRenterPoints() {
+    int frequentRenterPoints = 0;
+    for (Rental each : this.rentals) {
+      frequentRenterPoints += each.getFrequentRenterPoints();
+    }
+    return frequentRenterPoints;
+  }
+
+  private double getTotalCharge() {
+    double totalAmount = 0;
+    for (Rental each : this.rentals) {
+      totalAmount += each.getCharge();
+    }
+    return totalAmount;
   }
 }
