@@ -35,16 +35,16 @@ public class Customer {
 
   private int getTotalFrequentRenterPoints() {
     int frequentRenterPoints = 0;
-    for (Rental each : this.rentals) {
-      frequentRenterPoints += each.getFrequentRenterPoints();
+    for (Rental rental : this.rentals) {
+      frequentRenterPoints += rental.getFrequentRenterPoints();
     }
     return frequentRenterPoints;
   }
 
   private double getTotalCharge() {
     double totalAmount = 0;
-    for (Rental each : this.rentals) {
-      totalAmount += each.getCharge();
+    for (Rental rental : this.rentals) {
+      totalAmount += rental.getCharge();
     }
     return totalAmount;
   }
